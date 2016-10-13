@@ -1,30 +1,28 @@
 import * as React from "react";
+import {MainNavigation} from "./MainNavigation";
 
 export interface ICorePageProps extends React.ClassAttributes<any> {
 }
 
-export class CorePageState<TProps extends ICorePageProps> {
-  props: TProps;
+export class CorePageState {
 
-  constructor(props: TProps) {
-    this.props = props;
-  }
 }
 
-export class CorePage<TProps extends ICorePageProps,TState extends CorePageState<any>> extends React.Component<TProps,TState> {
-  constructor(props: TProps, context: any) {
+export class CorePage extends React.Component<ICorePageProps,CorePageState> {
+  constructor(props: ICorePageProps, context: any) {
     super(props, context);
     this.props = props;
     this.context = context;
-    this.state = new CorePageState<any>(props) as any;
+    this.state = new CorePageState() as any;
   }
+
 
   render(): JSX.Element {
     return (
-      <div>
-        это core page
-        {this.props.children}
-      </div>
+        <div>
+          <MainNavigation/>
+          {this.props.children}
+        </div>
     );
   }
 
